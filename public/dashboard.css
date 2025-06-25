@@ -1,249 +1,345 @@
-/* Variables de color y tipografía */
+/* ===== VARIABLES Y ESTILOS BASE ===== */
 :root {
-  --primary-color: #4361ee;
-  --secondary-color: #3f37c9;
-  --success-color: #4cc9f0;
-  --warning-color: #f8961e;
-  --danger-color: #f94144;
-  --light-color: #f8f9fa;
-  --dark-color: #212529;
-  --gray-color: #6c757d;
-  --border-radius: 8px;
-  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --primary: #4361ee;
+  --primary-hover: #3a56d4;
+  --secondary: #3f37c9;
+  --success: #4cc9f0;
+  --warning: #f8961e;
+  --danger: #f94144;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #6c757d;
+  --radius: 8px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  
+  /* Modo nocturno */
+  --dark-bg: #121212;
+  --dark-card: #1e1e1e;
+  --dark-text: #e0e0e0;
+  --dark-border: #333;
 }
 
-/* Estructura general */
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: #f5f7fa;
+  color: var(--dark);
+}
+
+/* ===== ESTRUCTURA PRINCIPAL ===== */
 .dashboard-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--dark-color);
 }
 
+/* ===== HEADER ===== */
 .dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
 }
 
 .dashboard-title {
   margin: 0;
   font-size: 1.8rem;
-  color: var(--primary-color);
-}
-
-/* Cards */
-.card {
-  background: white;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  padding: 20px;
-  margin-bottom: 25px;
-}
-
-.section-title {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 1.4rem;
-  color: var(--secondary-color);
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-/* Formularios */
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-}
-
-.form-inline {
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-input[type="text"],
-input[type="date"],
-textarea,
-select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: var(--border-radius);
-  width: 100%;
-  font-size: 1rem;
-}
-
-textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-/* Botones */
-.btn {
-  padding: 10px 15px;
+/* ===== TARJETAS ===== */
+.card {
   border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s;
-  text-align: center;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
 }
 
-.primary-btn {
-  background-color: var(--primary-color);
-  color: white;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.secondary-btn {
-  background-color: var(--gray-color);
-  color: white;
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 1rem 1.5rem;
+  font-weight: 600;
 }
 
-.clear-btn {
-  background-color: transparent;
-  color: var(--gray-color);
-  border: 1px solid var(--gray-color);
+.card-body {
+  padding: 1.5rem;
 }
 
-.logout-btn {
-  background-color: var(--danger-color);
-  color: white;
+.section-title {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.complete-btn {
-  background-color: var(--success-color);
-  color: white;
-}
-
-.edit-btn {
-  background-color: var(--warning-color);
-  color: white;
-}
-
-.delete-btn {
-  background-color: var(--danger-color);
-  color: white;
-}
-
-.btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Tareas */
+/* ===== TAREAS ===== */
 .task-item {
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: var(--border-radius);
-  border-left: 4px solid #ddd;
-  background-color: var(--light-color);
+  padding: 1.25rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: background-color 0.2s ease;
 }
 
-.task-item.completed {
-  opacity: 0.8;
-  border-left-color: var(--success-color);
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-item:hover {
+  background-color: rgba(0,0,0,0.02);
 }
 
 .task-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.task-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
 .task-desc {
-  margin: 10px 0;
-  color: var(--gray-color);
-}
-
-.task-date {
-  color: var(--gray-color);
+  color: var(--gray);
   font-size: 0.9rem;
+  margin-bottom: 0.75rem;
 }
 
-.completed-label {
-  color: var(--success-color);
-  font-style: italic;
-}
-
-.task-actions {
+.task-meta {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-.task-actions .btn {
-  padding: 8px 12px;
-  font-size: 0.9rem;
-}
-
-/* Prioridades */
-.priority {
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.badge-alta {
-  background-color: #ffcdd2;
-  color: #c62828;
-}
-
-.badge-media {
-  background-color: #fff8e1;
-  color: #ff8f00;
-}
-
-.badge-baja {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-}
-
-/* Mensajes */
-.no-tasks {
-  color: var(--gray-color);
-  font-style: italic;
-  text-align: center;
-  padding: 20px;
-}
-
-/* Export link */
-.export-link {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.export-link a {
-  color: var(--primary-color);
-  text-decoration: none;
+/* ===== BADGES Y ETIQUETAS ===== */
+.badge {
   font-weight: 500;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
 }
 
-.export-link a:hover {
-  text-decoration: underline;
+.badge-priority {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Responsive */
+.badge-high {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+.badge-medium {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+}
+
+.badge-low {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.badge-date {
+  background-color: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-group .btn {
+  border-radius: var(--radius) !important;
+}
+
+/* ===== FORMULARIOS ===== */
+.form-control, .form-select {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid #dee2e6;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+}
+
+/* ===== ESTADÍSTICAS ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: var(--primary);
+}
+
+.stat-label {
+  color: var(--gray);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== MENSAJES VACÍOS ===== */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--gray);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* ===== MODO OSCURO (AJUSTES COMPLETOS) ===== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+  }
+
+  /* Barras de título corregidas */
+  .card-header {
+    background-color: var(--dark-card) !important;
+    border-bottom-color: var(--dark-border) !important;
+  }
+
+  .card-header h5 {
+    color: var(--dark-text) !important;
+  }
+
+  .card-header .badge {
+    background-color: var(--primary) !important;
+    color: white !important;
+  }
+
+  /* Cards y tareas */
+  .card {
+    background-color: var(--dark-card);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .task-item {
+    background-color: var(--dark-card);
+    border-bottom-color: var(--dark-border) !important;
+  }
+
+  .task-item:hover {
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  .task-title,
+  .task-item h6 {
+    color: var(--dark-text) !important;
+  }
+
+  .task-desc,
+  .text-muted {
+    color: #aaa !important;
+  }
+
+  /* Badges */
+  .badge:not(.bg-danger, .bg-warning, .bg-success, .badge-high, .badge-medium, .badge-low) {
+    background-color: #333 !important;
+    color: var(--dark-text) !important;
+  }
+
+  /* Botones */
+  .btn-outline-success {
+    border-color: #4caf50 !important;
+    color: #4caf50 !important;
+  }
+
+  /* Estadísticas */
+  .stat-card {
+    background-color: var(--dark-card);
+  }
+
+  .stat-value {
+    color: var(--primary) !important;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .dashboard-header {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
+  .dashboard-container {
+    padding: 15px;
   }
   
-  .task-actions {
-    flex-direction: column;
+  .dashboard-title {
+    font-size: 1.5rem;
   }
   
-  .form-inline {
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .task-meta {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 0.5rem;
   }
 }
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-item {
+  animation: fadeIn 0.3s ease forwards;
+}
+

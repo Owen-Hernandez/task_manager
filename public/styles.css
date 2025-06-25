@@ -1,4 +1,4 @@
-/* Variables de diseño */
+/* ===== VARIABLES ===== */
 :root {
   --primary: #4361ee;
   --primary-hover: #3a56d4;
@@ -7,134 +7,152 @@
   --text: #2b2d42;
   --text-light: #6c757d;
   --border: #e0e0e0;
-  --bg: #f8f9fa;
-  --white: #ffffff;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --radius: 8px;
+  
+  /* Modo nocturno */
+  --dark-bg: #121212;
+  --dark-card: #1e1e1e;
+  --dark-text: #e0e0e0;
+  --dark-border: #333;
+  --dark-placeholder: #a0a0a0;
 }
 
-/* Estructura base */
+/* ===== ESTILOS BASE ===== */
 body {
   font-family: 'Segoe UI', system-ui, sans-serif;
-  background: var(--bg);
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-}
-
-/* Contenedor principal */
-.auth-container {
-  background: var(--white);
-  max-width: 450px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-/* Cabecera */
-.auth-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.auth-title {
+  background-color: #f5f7fa;
   color: var(--text);
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
+  transition: background-color 0.3s ease;
 }
 
-.auth-subtitle {
-  color: var(--text-light);
-  font-size: 0.95rem;
+/* ===== MODO NOCTURNO ===== */
+.dark-mode {
+  background-color: var(--dark-bg);
+  color-scheme: dark;
 }
 
-/* Grupos de input */
-.input-group {
-  margin-bottom: 1.5rem;
+.dark-mode body {
+  background-color: var(--dark-bg) !important;
+  color: var(--dark-text);
 }
 
-.input-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text);
-  font-weight: 500;
+/* ===== CORRECCIONES ESPECÍFICAS PARA TAREAS ===== */
+.dark-mode .task-item {
+  background-color: var(--dark-card) !important;
+  border-color: var(--dark-border) !important;
 }
 
-.input-group input {
-  width: 100%;
-  padding: 0.85rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 1rem;
+.dark-mode .task-title,
+.dark-mode .task-item h6 {
+  color: var(--dark-text) !important;
 }
 
-.input-group input:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+.dark-mode .task-desc,
+.dark-mode .task-meta .text-muted {
+  color: var(--dark-placeholder) !important;
 }
 
-/* Botón */
-.auth-btn {
-  width: 100%;
-  padding: 0.85rem;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  font-weight: 600;
+.dark-mode .badge:not(.bg-primary, .bg-success, .bg-danger, .bg-warning) {
+  background-color: #333 !important;
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .btn-outline-success {
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+}
+
+/* ===== COMPONENTES GENERALES EN MODO OSCURO ===== */
+.dark-mode .card {
+  background-color: var(--dark-card) !important;
+  border-color: var(--dark-border) !important;
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .modal-content {
+  background-color: var(--dark-card) !important;
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+  border-color: var(--dark-border) !important;
+}
+
+/* Formularios en modo oscuro */
+.dark-mode .form-control,
+.dark-mode .form-select {
+  background-color: #2d2d2d !important;
+  color: var(--dark-text) !important;
+  border-color: var(--dark-border) !important;
+}
+
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.5) !important;
+}
+
+/* Placeholders legibles */
+.dark-mode ::placeholder {
+  color: var(--dark-placeholder) !important;
+  opacity: 1 !important;
+}
+
+.dark-mode :-ms-input-placeholder {
+  color: var(--dark-placeholder) !important;
+}
+
+.dark-mode ::-ms-input-placeholder {
+  color: var(--dark-placeholder) !important;
+}
+
+/* Textos y elementos varios */
+.dark-mode .text-muted {
+  color: var(--dark-placeholder) !important;
+}
+
+.dark-mode .btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.dark-mode .alert {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ===== COMPONENTES ESPECÍFICOS ===== */
+/* Interruptor modo nocturno */
+.form-switch .form-check-input {
   cursor: pointer;
-  transition: all 0.3s;
+  width: 2.5em;
+  height: 1.4em;
 }
 
-.auth-btn:hover {
-  background: var(--primary-hover);
+.bi-moon-stars {
+  transition: transform 0.3s;
+  margin-left: 5px;
 }
 
-/* Pie de formulario */
-.auth-footer {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: var(--text-light);
-}
-
-.auth-link {
+.dark-mode .bi-moon-stars {
+  transform: rotate(25deg);
   color: var(--primary);
-  text-decoration: none;
-  font-weight: 500;
 }
 
-.auth-link:hover {
-  text-decoration: underline;
+/* Transiciones suaves */
+body, .card, .form-control, .btn, .modal-content {
+  transition: all 0.3s ease;
 }
 
-/* Mensajes */
-.mensaje-exito {
-  color: var(--success);
-  background: rgba(76, 201, 240, 0.1);
-  padding: 1rem;
-  border-radius: var(--radius);
-  margin-bottom: 1.5rem;
-  text-align: center;
-  border: 1px solid rgba(76, 201, 240, 0.2);
-}
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 768px) {
+  .dark-mode .form-control, 
+  .dark-mode .form-select {
+    font-size: 16px;
+  }
 
-.mensaje-error {
-  color: var(--error);
-  background: rgba(249, 65, 68, 0.1);
-  padding: 1rem;
-  border-radius: var(--radius);
-  margin-bottom: 1.5rem;
-  text-align: center;
-  border: 1px solid rgba(249, 65, 68, 0.2);
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .auth-container {
-    margin: 1rem;
-    padding: 1.5rem;
+  /* Ajustes específicos para tareas en móvil */
+  .dark-mode .task-item {
+    padding: 1rem !important;
   }
 }
